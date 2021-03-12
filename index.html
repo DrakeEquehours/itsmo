@@ -283,39 +283,84 @@
             <div class="card-body">
               <div class="login-box">
                 <h1 style="text-align: center;">instant message</h1>
-                <div class="textbox">
-                  <i class="fas fa-arrow-right"></i>
-                  <input type="text" placeholder="subject" name="" value="">
+                <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert" style="margin-top: -40px;">
+                  <strong>Hi there!</strong> We have received your message, please be patient for your feedback. Have a nice day!
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                <div class="textbox">
-                  <i class="fas fa-envelope"></i>
-                  <input type="text" placeholder="message" name="" value="">
-                </div>
-                <div class="textbox">
-                  <i class="fas fa-at"></i>
-                  <input onkeyup="checkEmail()" type="text" id="email" placeholder="email for feedback" name="" value="">
-                  <div class="icons">
-                    <span class="icon1 fas fa-exclamation"></span>
+                <form name='submit-to-google-sheet'>
+                  <div class="textbox">
+                    <i class="fas fa-arrow-right"></i>
+                    <input type="text" placeholder="subject" name="subject" value="">
                   </div>
-                </div>
-                <a href="#" class="btn btn-outline-primary" style="
+                  <div class="textbox">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="message" name="message" value="">
+                  </div>
+                  <div class="textbox">
+                    <i class="fas fa-at"></i>
+                    <input onkeyup="checkEmail()" type="text" id="email" placeholder="email for feedback" name="email" value="">
+                    <div class="icons">
+                      <span class="icon1 fas fa-exclamation"></span>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-outline-primary btn-send" style="
+                    width: 100%;
+                    border: 2px solid rgb(9, 28, 39);
+                    background: rgb(0, 58, 91);
+                    color:rgb(255, 255, 255);
+                    padding: 5px;
+                    font-size: 20px;
+                    margin: 20px 0;">Send
+                  </button>
+                  <button class="btn btn-outline-primary btn-loading d-none" type="button" style="
                   width: 100%;
                   border: 2px solid rgb(9, 28, 39);
                   background: rgb(0, 58, 91);
                   color:rgb(255, 255, 255);
                   padding: 5px;
                   font-size: 20px;
-                  margin: 20px 0;">Kirim</a>
-                </div>
-                <p></p>
+                  margin: 20px 0;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                </form>
               </div>
+            </div>
         </div>
       </div>
     </div>
       <div class="copyright text-center text-black font-weight-bold">
-        <p>If you have scholarship please contact me on my academic email</p>
+        <p>Developed By Ahmad Zein Al Wafi</p>
       </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwuOvMGolkK1749a1MizOafDdIripZSIx2JZjioCQZmMhTDkWIPSb3RH1hUjC03xUMalQ/exec'
+      const form = document.forms['submit-to-google-sheet']
+      const btnSend = document.querySelector('.btn-send')
+      const btnLoad = document.querySelector('.btn-loading')
+      const alertScs = document.querySelector('.my-alert')
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        //Tampilkan loading
+        btnLoad.classList.toggle('d-none')
+        btnSend.classList.toggle('d-none')
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            console.log('Success!', response);
+            //hilangkan loading
+            btnLoad.classList.toggle('d-none')
+            btnSend.classList.toggle('d-none')
+            //munculkan alert
+            swal("Hi There!", "You Email Has Been Sent!", "success");
+            alertScs.classList.toggle('d-none')
+            //reset form
+            form.reset();
+          })
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
   </body>
 </html>
