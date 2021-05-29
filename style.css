@@ -1,6 +1,26 @@
 body{
     overflow-x: hidden;
 }
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #242f3f;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 50%;                       /******** <- Remove this line *********/
+    border: 4px solid #Fff;
+    animation: loader 2s infinite ease;
+  }
 .navbar{
     background: rgb(0,135,168);
     background: linear-gradient(90deg, rgba(0,135,168,1) 10%, rgba(0,168,168,1) 35%, rgba(46,181,224,1) 65%, rgba(4,236,240,1) 90%);
@@ -14,8 +34,8 @@ body{
     font-family: sans-serif;
 }
 .jumbotron{
-    background-image: none;
     background-size: cover;
+    background-attachment: fixed;
     height: 700px;
     width: auto;
     margin-top: -60px;
@@ -366,6 +386,7 @@ body{
 .desctittle{
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%235c90eb' d='M49.7,-59.6C65.1,-57.3,78.7,-43.6,79.2,-28.8C79.8,-14.1,67.3,1.9,59.7,17.6C52.2,33.4,49.6,49,40.4,62.4C31.3,75.8,15.6,87.1,4,81.5C-7.6,76,-15.2,53.7,-27.5,41.3C-39.9,28.9,-57,26.5,-61.4,18.6C-65.7,10.7,-57.4,-2.6,-53,-17.5C-48.5,-32.4,-48,-48.9,-39.8,-53.6C-31.7,-58.3,-15.8,-51.2,0.7,-52.1C17.2,-53,34.3,-62,49.7,-59.6Z' transform='translate(100 100)' /%3E%3C/svg%3E");
     background-size: 640px;
+    height: 540px;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -442,3 +463,176 @@ body{
     z-index: 12;
     border-radius: 6px 6px 0 0;
 }
+  /* The browser window */
+  .containe {
+    border: 3px solid #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  
+  /* Container for columns and the top "toolbar" */
+  .rowe {
+    padding: 10px;
+    background: #f1f1f1;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 100%;
+  }
+  
+  /* Create three unequal columns that floats next to each other */
+  .column {
+    float: left;
+  }
+  
+  .left {
+    width: 15%;
+  }
+  
+  .right {
+    width: 10%;
+  }
+  
+  .middle {
+    width: 75%;
+  }
+  
+  /* Clear floats after the columns */
+  .rowe:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Three dots */
+  .dot {
+    margin-top: 4px;
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  /* Style the input field */
+  .middle input[type=text] {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    margin-top: -8px;
+    height: 25px;
+    color: #666;
+    padding: 5px;
+  }
+  
+  /* Three bars (hamburger menu) */
+  .bar {
+    width: 17px;
+    height: 3px;
+    background-color: #aaa;
+    margin: 3px 0;
+    display: block;
+  }
+  .conten {
+      padding: 20px 50px 50px 0px;
+      margin-top: -60px;
+  }
+  .header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: #f1f1f1;
+  }
+  
+  /* The progress container (grey background) */
+  .progress-container {
+    width: 100%;
+    height: 8px;
+    background: #ccc;
+  }
+  
+  /* The progress bar (scroll indicator) */
+  .progress-bar {
+    height: 8px;
+    background: #04AA6D;
+    width: 0%;
+  }
+  .flip-box {
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    margin-right: auto;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side */
+  .flip-box-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-box-back {
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+  }
+  .carde {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .titles {
+    color: black;
+    font-size: 18px;
+  }
+  .titlenya {
+    color: black;
+  }
+  
+  .carde button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .carde a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  .carde button:hover, a:hover {
+    opacity: 0.7;
+  }
+  
